@@ -1,0 +1,2 @@
+class Cockail < ApplicationRecord
+end
