@@ -1,8 +1,8 @@
-class Api::V1::RestaurantsController < Api::V1::BaseController
+class Api::V1::CocktailsController < Api::V1::BaseController
 
   def show
-    @cocktaol = Cocktail.find(params[:id])
-    authorize @cocktail
+    @cocktail = Cocktail.find(params[:id])
+    # authorize @cocktail
   end
 
   # def show
