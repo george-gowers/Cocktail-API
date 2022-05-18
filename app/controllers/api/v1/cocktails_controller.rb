@@ -4,16 +4,33 @@ class Api::V1::CocktailsController < Api::V1::BaseController
     @cocktail = Cocktail.find(params[:id])
   end
 
-  # def name           # maybe pg search?
-  #   if # one word
-  #     @cocktail = Cocktail.find_by(name: params[:name].capitalize)
-  #   else
-  #     # split the words and capitalize each word, then put it all back together and search
-  #   end
-  # end
 
   def search
     @cocktails = Cocktail.search_by_name(params[:name])
+  end
+
+
+  def create
+    @cocktail = Cocktail.new(cocktail_params)
+    raise
+    if @cocktail.save
+      render :show, status: :created
+    else
+      render_error
+    end
+  end
+
+
+  private
+
+  def cocktail_params
+    params.require(:cocktail).permit(:name, :ingredients, :preparation, :image)
+  end
+
+
+  def render_error
+    render json: { errors: @cocktail.errors.full_messages },
+      status: :unprocessable_entity
   end
 
 end

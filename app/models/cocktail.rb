@@ -1,23 +1,15 @@
 class Cocktail < ApplicationRecord
 
+  # validates :name, presence: true, uniqueness: true
+  # validates :preparation, presence: true
+  # validates :image, presence: true
+
+  validates :ingredients, presence: true
+
   include PgSearch::Model
-  # pg_search_scope :search_by_name,
-  #   against: [ :name ],
-  #   using: {
-  #     tsearch: { prefix: true } # <-- now `superman batm` will return something!
-  #   }
-
-  # pg_search_scope :search_by_name, against: :name
-
-  # pg_search_scope :search_by_name,
-  #                 against: :name,
-  #                 using: {
-  #                   tsearch: {dictionary: "english"}
-  #                 }
-
-   pg_search_scope :search_by_name,
+  pg_search_scope :search_by_name,
                   against: :name,
                   using: {
-                    tsearch: {normalization: 2, prefix: true}
+                    tsearch: { normalization: 2, prefix: true }
                   }
 end

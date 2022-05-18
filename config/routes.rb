@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :cocktails, only: [ :show ] do
+      resources :cocktails, only: [ :show, :create ] do
         collection do
           get :search
         end
