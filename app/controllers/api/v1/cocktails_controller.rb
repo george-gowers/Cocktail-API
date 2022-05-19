@@ -12,7 +12,6 @@ class Api::V1::CocktailsController < Api::V1::BaseController
 
   def create
     @cocktail = Cocktail.new(cocktail_params)
-    raise
     if @cocktail.save
       render :show, status: :created
     else
